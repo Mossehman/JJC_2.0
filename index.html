@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJC 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+       <img id="headerBackground" src="Images/JJK_Emblem.png" />
+       <h1 id="title">Jujutsu Colosseum Stats Sheet 2.0</h1>
+   </header>
+
+    <div class="MainBody">
+        <div id="pointsBar">
+            <div id="pointsDisplay">
+                <div id="pointsTitle">
+                    <p id="pointsTitleText">Statistics</p>
+                </div>
+                <div>hello</div>
+            </div>
+        </div>
+
+        <div id="inputBar">
+            <div id="inputHeader">
+                <div class="HeaderElement" id="test">
+                    <button class="HeaderButton">General</button>
+                </div>
+                <div class="HeaderElement" id="test">
+                    <button class="HeaderButton">Physicals</button>
+
+                </div>
+                <div class="HeaderElement" id="test">
+                    <button class="HeaderButton">Jujutsu</button>
+                </div>
+
+                <div class="HeaderElement" id="test">
+                    <button class="HeaderButton">Tools</button>
+                </div>
+
+                <div class="HeaderElement" id="test">
+                    <button class="HeaderButton">Help</button>
+                </div>
+
+            </div>
+
+            <div id="inputValues">
+                <p class="titleText" id="ocInfoTitle">General OC Info</p>
+                <p class="titleText" id="ocPhysicalStatsTitle">Physical Stats</p>
+
+                <div class="inputData" id="generalData">
+                    <label for="ocName" id="ocNameHeader" class="sectionHeader">OC Name</label><br>
+                    <input type="text" id="ocName" name="ocName" placeholder="Enter your OC's Name">
+
+                    <div id="ocNicknameHeaderDiv">
+                        <div id="ocNicknameHeader" class="sectionHeader">Nicknames</div>
+                        <button id="addOcNickname">+</button>
+                    </div>
+
+                    <label for="ocAffiliation" id="ocAffiliationHeader" class="sectionHeader">Affiliation</label><br>
+                    <input list="ocAffiliationPlaceholders" name="ocAffiliationPlaceholders" id="ocAffiliation" class="userInputValue">
+                    <datalist id="ocAffiliationPlaceholders">
+                        <option value="Tokyo Metropolian Jujutsu High" />
+                        <option value="Kyoto Jujutsu High" />
+                        <option value="Gojo Clan" />
+                        <option value="Zen'in Clan" />
+                        <option value="Kamo Clan" />
+                        <option value="Inumaki Clan" />
+                        <option value="Fujiwara Clan" />
+                        <option value="Abe Clan" />
+                        <option value="Curse User Group: Q" />
+                        <option value="Time Vessel Association" />
+                    </datalist>
+
+                    <div class="sectionHeader">
+                        <div id="ocGradeHeaderDiv">
+                            <div id="ocGradeHeader">Grade</div>
+                            <button id="showGradePoints"><</button>
+                        </div>
+                        <div id="gradePointList">
+                            <ul>
+                                <li>Grade 4 -> 0-10P</li>
+                                <li>Grade 3 -> 11-20P</li>
+                                <li>Grade 2 -> 21-30P</li>
+                                <li>Grade 1 -> 31-45P</li>
+                                <li>Grade 0 -> 46-75P</li>
+                                <li>Special Grade -> 76+P</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <select name="ocGrade" id="ocGrade" class="userInputValue">
+                        <option value="g4" selected="selected">Grade 4</option>
+                        <option value="g3">Grade 3</option>
+                        <option value="g2">Grade 2</option>
+                        <option value="g1">Grade 1</option>
+                        <option value="g0">Grade 0</option>
+                        <option value="sg">Special Grade</option>
+                    </select>
+
+                    <div class="sectionHeader" id="ocAppearanceDiv">
+                        <div>Appearance</div>
+                        <input type="file" id="appearanceFile" name="appearanceFile" accept="image/*">
+                    </div>
+                    <textarea id="ocAppearanceText"></textarea>
+
+                    <div class="sectionHeader">Personality</div>
+                    <textarea id="ocPersonalityText"></textarea>
+
+                    <div class="sectionHeader">Backstory</div>
+                    <textarea id="ocBackstoryText"></textarea>
+                </div>
+
+                <div class="inputData" id="physicalData"></div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
