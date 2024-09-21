@@ -24,6 +24,51 @@ for (let i = 0; i < headerButtons.length; i++) {
     });
 };
 
+// Define a counter to ensure unique name attributes for each set of radio buttons
+
+// Define the function to generate the HTML for each set of radio buttons with unique names
+function generateRadioButtonsHTML(statType) {
+    return `
+    <div class="radioButtonsDiv">
+        <div class="subG4Stats" id="${statType}Stats">
+            <input type="radio" id="${statType}G4min3" name="${statType}" />
+            <label for="${statType}G4min3">Grade 4 - 3 (0P)</label><br>
+            <input type="radio" id="${statType}G4min2" name="${statType}" />
+            <label for="${statType}G4min2">Grade 4 - 2 (0P)</label><br>
+            <input type="radio" id="${statType}G4min1" name="${statType}" />
+            <label for="${statType}G4min1">Grade 4 - 1 (0P)</label><br>
+        </div>
+        <input type="radio" id="${statType}G4" name="${statType}" checked="checked" />
+        <label for="${statType}G4">Grade 4 (0P)</label><br>
+        <input type="radio" id="${statType}G3" name="${statType}" />
+        <label for="${statType}G3">Grade 3 (1P)</label><br>
+        <input type="radio" id="${statType}G2" name="${statType}" />
+        <label for="${statType}G2">Grade 2 (2P)</label><br>
+        <input type="radio" id="${statType}G1" name="${statType}" />
+        <label for="${statType}G1">Grade 1 (3P)</label><br>
+        <input type="radio" id="${statType}SG" name="${statType}" />
+        <label for="${statType}SG">Special Grade (4P)</label><br>
+        <div class="superSGStats" id="${statType}Stats">
+            <input type="radio" id="${statType}SGplus1" name="${statType}" />
+            <label for="${statType}SGplus1">Special Grade + 1 (6P)</label><br>
+            <input type="radio" id="${statType}SGplus2" name="${statType}" />
+            <label for="${statType}SGplus2">Special Grade + 2 (8P)</label><br>
+            <input type="radio" id="${statType}SGplus3" name="${statType}" />
+            <label for="${statType}SGplus3">Special Grade + 3 (10P)</label><br>
+        </div>
+    </div>`;
+}
+
+// Select all elements with the class 'ocStat'
+let ocStatElements = Array.from(document.getElementsByClassName('ocStat'));
+
+// Loop through each element and insert a unique set of radio buttons after it
+for (let i = 0; i < ocStatElements.length; i++) {
+    ocStatElements[i].insertAdjacentHTML('afterend', generateRadioButtonsHTML(ocStatElements[i].id));
+}
+
+
+
 
 document.getElementById('addOcNickname').addEventListener('click', function () {
     // Create the div element for a new nickname

@@ -281,6 +281,10 @@ textarea {
 }
 
 
+.subG4Stats {
+    display: none;
+}
+
 
 .MainBody {
     background-color: rgb(0, 255, 255, 0.5);
