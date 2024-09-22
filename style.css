@@ -151,13 +151,17 @@ header {
 }
 
 .inputData {
-    display: block;
+    display: none;
     width: 100%;
     height: auto;
     padding-left: 1%;
     padding-top: 1%;
-    padding-bottom: 1%;
+    padding-bottom: 5%;
     background-color: wheat;
+}
+
+#generalData {
+    display: block;
 }
 
 #ocName {
@@ -283,6 +287,13 @@ textarea {
 
 .subG4Stats {
     display: none;
+}
+.superSGStats {
+    display: none;
+}
+
+#minorStatsHeader {
+    padding-top: 7%;
 }
 
 

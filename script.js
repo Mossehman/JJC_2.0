@@ -31,30 +31,30 @@ function generateRadioButtonsHTML(statType) {
     return `
     <div class="radioButtonsDiv">
         <div class="subG4Stats" id="${statType}Stats">
-            <input type="radio" id="${statType}G4min3" name="${statType}" />
+            <input type="radio" id="${statType}G4min3" name="${statType}" "value=-3" />
             <label for="${statType}G4min3">Grade 4 - 3 (0P)</label><br>
-            <input type="radio" id="${statType}G4min2" name="${statType}" />
+            <input type="radio" id="${statType}G4min2" name="${statType}" value="-2" />
             <label for="${statType}G4min2">Grade 4 - 2 (0P)</label><br>
-            <input type="radio" id="${statType}G4min1" name="${statType}" />
+            <input type="radio" id="${statType}G4min1" name="${statType}" value="-1"/>
             <label for="${statType}G4min1">Grade 4 - 1 (0P)</label><br>
         </div>
-        <input type="radio" id="${statType}G4" name="${statType}" checked="checked" />
+        <input type="radio" id="${statType}G4" name="${statType}" "value=0" checked="checked" />
         <label for="${statType}G4">Grade 4 (0P)</label><br>
-        <input type="radio" id="${statType}G3" name="${statType}" />
+        <input type="radio" id="${statType}G3" name="${statType}" "value=1" />
         <label for="${statType}G3">Grade 3 (1P)</label><br>
-        <input type="radio" id="${statType}G2" name="${statType}" />
+        <input type="radio" id="${statType}G2" name="${statType}" "value=2" />
         <label for="${statType}G2">Grade 2 (2P)</label><br>
-        <input type="radio" id="${statType}G1" name="${statType}" />
+        <input type="radio" id="${statType}G1" name="${statType}" "value=3" />
         <label for="${statType}G1">Grade 1 (3P)</label><br>
-        <input type="radio" id="${statType}SG" name="${statType}" />
+        <input type="radio" id="${statType}SG" name="${statType}" "value=4" />
         <label for="${statType}SG">Special Grade (4P)</label><br>
         <div class="superSGStats" id="${statType}Stats">
-            <input type="radio" id="${statType}SGplus1" name="${statType}" />
+            <input type="radio" id="${statType}SGplus1" name="${statType}" "value=5" />
             <label for="${statType}SGplus1">Special Grade + 1 (6P)</label><br>
-            <input type="radio" id="${statType}SGplus2" name="${statType}" />
+            <input type="radio" id="${statType}SGplus2" name="${statType}" "value=6" />
             <label for="${statType}SGplus2">Special Grade + 2 (8P)</label><br>
-            <input type="radio" id="${statType}SGplus3" name="${statType}" />
-            <label for="${statType}SGplus3">Special Grade + 3 (10P)</label><br>
+            <input type="radio" id="${statType}SGplus3" name="${statType}" class="SGplus3" "value=7" />
+            <label for="${statType}SGplus3" class="SGplus3" >Special Grade + 3 (10P)</label><br>
         </div>
     </div>`;
 }
@@ -66,6 +66,8 @@ let ocStatElements = Array.from(document.getElementsByClassName('ocStat'));
 for (let i = 0; i < ocStatElements.length; i++) {
     ocStatElements[i].insertAdjacentHTML('afterend', generateRadioButtonsHTML(ocStatElements[i].id));
 }
+
+
 
 
 
@@ -115,6 +117,41 @@ toggleButton.addEventListener('click', function () {
 });
 
 
+let gradeSelect = document.getElementById('ocGrade');
+
+gradeSelect.addEventListener('change', function () {
+    let selectedGrade = gradeSelect.value; // This gives you the value as a string
+    let selectedGradeValue = Number(selectedGrade); // Convert the string to a number
+
+    if (selectedGradeValue >= 4) {
+        let superSGStats = Array.from(document.getElementsByClassName('superSGStats'));
+        for (let j = 0; j < superSGStats.length; j++) {
+            superSGStats[j].style.display = "block";
+        }
+
+        if (selectedGradeValue < 5) {
+            let SGplusThree = Array.from(document.getElementsByClassName('SGplus3'));
+            for (let i = 0; i < SGplusThree.length; i++) {
+                SGplusThree[i].style.display = "none";
+            }
+        }
+        else {
+            let SGplusThree = Array.from(document.getElementsByClassName('SGplus3'));
+            for (let i = 0; i < SGplusThree.length; i++) {
+                SGplusThree[i].style.display = "inline-block";
+            }
+        }
+    }
+    else {
+        let superSGStats = Array.from(document.getElementsByClassName('superSGStats'));
+        for (let j = 0; j < superSGStats.length; j++) {
+            superSGStats[j].style.display = "none";
+        }
+    }
+
+
+    
+});
 
 function update() {
 
