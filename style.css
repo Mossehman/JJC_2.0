@@ -69,7 +69,7 @@ header {
     width: 100%;
     height: auto;
     min-height: 100vh;
-    background-color: red;
+    background-color: dimgray;
 /*    padding-top: 10px;*/
     margin: 0;
     box-sizing: border-box;
@@ -78,7 +78,7 @@ header {
 #pointsTitle {
     width: 100%;
     height: auto;
-    background-color: blue;
+    background-color: gray;
     box-sizing: border-box;
     margin: 0;
     padding-top: 0;
@@ -143,7 +143,7 @@ header {
     padding-left: 1%; /* Custom padding as needed */
     padding-top: 2%;
     padding-bottom: 1%;
-    background-color: blue;
+    background-color: gray;
     text-align: center;
 }
 #ocInfoTitle {
@@ -165,7 +165,7 @@ header {
 }
 
 #ocName {
-    background-color: chocolate;
+    background-color: wheat;
     min-width: 200px;
     width: 40%;
     font-size: max(2vw, 15px);
@@ -214,7 +214,7 @@ header {
 }
 
 #ocNickname {
-    background-color: chocolate;
+    background-color: wheat;
     min-width: 200px;
     width: 40%;
     font-size: max(2vw, 15px);

@@ -31,30 +31,30 @@ function generateRadioButtonsHTML(statType) {
     return `
     <div class="radioButtonsDiv">
         <div class="subG4Stats" id="${statType}Stats">
-            <input type="radio" id="${statType}G4min3" name="${statType}" "value=-3" />
+            <input type="radio" id="${statType}G4min3" name="${statType}" value="-3" />
             <label for="${statType}G4min3">Grade 4 - 3 (0P)</label><br>
             <input type="radio" id="${statType}G4min2" name="${statType}" value="-2" />
             <label for="${statType}G4min2">Grade 4 - 2 (0P)</label><br>
             <input type="radio" id="${statType}G4min1" name="${statType}" value="-1"/>
             <label for="${statType}G4min1">Grade 4 - 1 (0P)</label><br>
         </div>
-        <input type="radio" id="${statType}G4" name="${statType}" "value=0" checked="checked" />
+        <input type="radio" id="${statType}G4" name="${statType}" value="0" checked="checked" />
         <label for="${statType}G4">Grade 4 (0P)</label><br>
-        <input type="radio" id="${statType}G3" name="${statType}" "value=1" />
+        <input type="radio" id="${statType}G3" name="${statType}" value="1" />
         <label for="${statType}G3">Grade 3 (1P)</label><br>
-        <input type="radio" id="${statType}G2" name="${statType}" "value=2" />
+        <input type="radio" id="${statType}G2" name="${statType}" value="2" />
         <label for="${statType}G2">Grade 2 (2P)</label><br>
-        <input type="radio" id="${statType}G1" name="${statType}" "value=3" />
+        <input type="radio" id="${statType}G1" name="${statType}" value="3" />
         <label for="${statType}G1">Grade 1 (3P)</label><br>
-        <input type="radio" id="${statType}SG" name="${statType}" "value=4" />
+        <input type="radio" id="${statType}SG" name="${statType}" value="4" />
         <label for="${statType}SG">Special Grade (4P)</label><br>
         <div class="superSGStats" id="${statType}Stats">
-            <input type="radio" id="${statType}SGplus1" name="${statType}" "value=5" />
+            <input type="radio" id="${statType}SGplus1" name="${statType}" value="5" />
             <label for="${statType}SGplus1">Special Grade + 1 (6P)</label><br>
-            <input type="radio" id="${statType}SGplus2" name="${statType}" "value=6" />
+            <input type="radio" id="${statType}SGplus2" name="${statType}" value="6" />
             <label for="${statType}SGplus2">Special Grade + 2 (8P)</label><br>
-            <input type="radio" id="${statType}SGplus3" name="${statType}" class="SGplus3" "value=7" />
-            <label for="${statType}SGplus3" class="SGplus3" >Special Grade + 3 (10P)</label><br>
+            <input type="radio" id="${statType}SGplus3" name="${statType}" value="7" class="SGplus3" />
+            <label for="${statType}SGplus3" class="SGplus3">Special Grade + 3 (10P)</label><br>
         </div>
     </div>`;
 }
@@ -62,10 +62,64 @@ function generateRadioButtonsHTML(statType) {
 // Select all elements with the class 'ocStat'
 let ocStatElements = Array.from(document.getElementsByClassName('ocStat'));
 
-// Loop through each element and insert a unique set of radio buttons after it
+function setMinorStatVal(id, value) {
+    let textToModify = document.getElementById(id);
+
+    if (Math.ceil(value) >= 4) {
+        let statVal = "Special Grade";
+
+        if (value % 1 === 0.5) {
+            statVal = "Semi-" + statVal;
+        }
+
+        if (value > 4) {
+            statVal = statVal + " + " + (Math.ceil(value) - 4);
+        }
+
+        textToModify.innerHTML = `${textToModify.id}: ${statVal}`;
+    } else {
+        let statVal = "Grade";
+        if (value % 1 === 0.5) {
+            statVal = "Semi-" + statVal;
+        }
+        statVal = statVal + " " + Math.ceil(4 - value);
+
+        textToModify.innerHTML = `${textToModify.id}: ${statVal}`;
+    }
+}
+
+// Loop through each 'ocStatElement' and insert radio buttons after it
 for (let i = 0; i < ocStatElements.length; i++) {
     ocStatElements[i].insertAdjacentHTML('afterend', generateRadioButtonsHTML(ocStatElements[i].id));
+
+    // Get all radio buttons related to the current stat
+    let radioButtons = document.querySelectorAll(`input[name="${ocStatElements[i].id}"]`);
+
+    // Add 'change' event listener to each radio button
+    radioButtons.forEach(function (radioButton) {
+        radioButton.addEventListener('change', function () {
+            let reflexVal = (Number(document.querySelector('input[name="Spd"]:checked').value) + Number(document.querySelector('input[name="Awr"]:checked').value)) * 0.5;
+            let willpowerVal = (Number(document.querySelector('input[name="Int"]:checked').value) + Number(document.querySelector('input[name="Awr"]:checked').value)) * 0.5;
+            let fortitudeVal = (Number(document.querySelector('input[name="Dur"]:checked').value) + Number(document.querySelector('input[name="End"]:checked').value)) * 0.5;
+            let disarmingVal = (Number(document.querySelector('input[name="Arm"]:checked').value) + Number(document.querySelector('input[name="Unarm"]:checked').value)) * 0.5;
+
+            // Prevent negative values
+            reflexVal = Math.max(reflexVal, 0);
+            willpowerVal = Math.max(willpowerVal, 0);
+            fortitudeVal = Math.max(fortitudeVal, 0);
+            disarmingVal = Math.max(disarmingVal, 0);
+
+            console.log(disarmingVal);
+
+
+            setMinorStatVal("Reflex", reflexVal);
+            setMinorStatVal("Willpower", willpowerVal);
+            setMinorStatVal("Fortitude", fortitudeVal);
+            setMinorStatVal("Disarming", disarmingVal);
+        });
+    });
 }
+
 
 
 
